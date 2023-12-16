@@ -1,3 +1,5 @@
+using Domain.Exceptions;
+
 namespace Application.UseCases.Suppliers.Commands.SupplierCreate;
 
 public record SupplierCreateCommand(

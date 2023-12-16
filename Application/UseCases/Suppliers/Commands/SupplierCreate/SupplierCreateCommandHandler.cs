@@ -27,11 +27,11 @@ public class SupplierCreateCommandHandler : IRequestHandler<SupplierCreateComman
             request.ContactName,
             request.ContactEmail
         );
-        var supplierSearcherd = _service.Find(filter => filter.Nit == request.Nit);
+        var supplierSearcherd =await _service.Find(filter => filter.Nit == request.Nit);
         
-        if (supplierSearcherd != null)
+        if (supplierSearcherd.Any())
         {
-            throw new EntityException($"Este Nit: {request.Nit} Ya esta registrado");
+            throw new EntityExistingException($"Este Nit: {request.Nit} Ya esta registrado");
         }
 
         await _service.CreateSupplier(supplier);

@@ -20,7 +20,7 @@ public class AuthenticationService
         )).FirstOrDefault();
         if (user == null)
         {
-            throw new IncorrectCredentialsException("Credenciales incorrectas");
+            throw new IncorrectCredentialsException();
         }
 
 

@@ -27,7 +27,8 @@ public class GenericRepository<E> : IGenericRepository<E> where E : EntityBase<s
             filter,
             Builders<E>.Filter.Eq(e => e.DeletionDate, null)
         );
-        return await _collection.Find(combinedFilter).ToListAsync();
+           var u =await _collection.Find(combinedFilter).ToListAsync();
+           return u;
     }
 
     public async Task<E> GetById(string id)

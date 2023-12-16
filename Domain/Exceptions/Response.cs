@@ -1,4 +1,4 @@
-namespace Application.Common;
+namespace Domain.Exceptions;
 
 public class Response<T>
 {
@@ -19,6 +19,8 @@ public class Response<T>
         Message = message;
         Data = data;
     }
+    
+ 
 
     public Response(string message)
     {

@@ -1,3 +1,4 @@
+using Application.Common.Exceptions;
 using Domain.Entities;
 using Domain.Services;
 
@@ -20,6 +21,9 @@ public class SupplierUpdateCommandHandler : IRequestHandler<SupplierUpdateComman
         supplierAddress.City = request.City;
         supplierAddress.Department = request.Department;
 
+        var supplierSearched = _service.GetSupplierById(request.SupplierId);
+        _ = supplierSearched ?? throw new EntityNotFundException();
+        
         await _service.UpdateSupplier(
             request.SupplierId,
             request.BusinessName,

@@ -1,5 +1,4 @@
 using System.Net;
-using Application.Common;
 using Application.Common.Exceptions;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Http;
@@ -26,29 +25,21 @@ public class ErrorHandlerMiddleware
         {
             var response = context.Response;
             response.ContentType = "application/json";
-            var modelResponse = new Response<string>() { Succeded = false, Message = error?.Message };
+            var modelResponse = new Response<string>() { Succeded = false, Message = error.Message };
 
             switch (error)
             {
-                case ApiException e:
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
                 case ValidationException e:
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    modelResponse.Errors = e.Errors;
+                    await e.HandleError(context, modelResponse);
                     break;
                 case CustomException e:
-                    modelResponse.Errors = e.ErrorMessages;
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
-                    break;
-                case KeyNotFoundException e:
-                    response.StatusCode = (int)HttpStatusCode.NotFound;
+                    await e.HandleError(context);
                     break;
                 case CoreBusinessException e:
-                    response.StatusCode = (int)HttpStatusCode.BadRequest;
+                    await e.HandleError(context);
                     break;
                 default:
-                    response.StatusCode = (int)HttpStatusCode.InternalServerError;
+                    context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                     break;
             }
 

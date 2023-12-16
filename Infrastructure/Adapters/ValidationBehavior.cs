@@ -27,7 +27,10 @@ public class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<TReques
             var failures = validationResults.SelectMany(r => r.Errors).Where(f => f != null).ToList();
 
             if (failures.Count != 0)
-                throw new ValidationException(failures);
+            {
+                var errors = failures.Select(x => x.ErrorMessage).ToList();
+                throw new ValidationException(errors);
+            }
         }
 
         return await next();

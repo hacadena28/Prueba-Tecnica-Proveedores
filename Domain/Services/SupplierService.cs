@@ -46,7 +46,6 @@ public class SupplierService
     )
     {
         var supplierSearched = await _supplierRepository.GetById(supplierId);
-        _ = supplierSearched ?? throw new CoreBusinessException("El usuario con el id proporcionada no existe");
         if (supplierSearched.Active != active && active != null)
         {
             supplierSearched.ChangeState(active.Value);

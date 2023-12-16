@@ -1,4 +1,6 @@
+using System.Net;
 using System.Runtime.Serialization;
+using Microsoft.AspNetCore.Http;
 
 namespace Domain.Exceptions;
 
@@ -19,5 +21,10 @@ public class CoreBusinessException : Exception
 
     protected CoreBusinessException(SerializationInfo info, StreamingContext content) : base(info, content)
     {
+    }
+
+    public async virtual Task HandleError(HttpContext context)
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
     }
 }

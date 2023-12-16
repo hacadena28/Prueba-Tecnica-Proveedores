@@ -16,7 +16,7 @@ public class SupplierDeleteCommandHandler : IRequestHandler<SupplierDeleteComman
     public async Task<Unit> Handle(SupplierDeleteCommand request, CancellationToken cancellationToken)
     {
         var supplierSearched = await _service.GetSupplierById(request.SupplierId);
-        _ = supplierSearched ?? throw new EntityException($"No existe ningun proveedor con este Id : {request.SupplierId}");
+        _ = supplierSearched ?? throw new EntityNotFundException($"No existe ningun proveedor con este Id : {request.SupplierId}");
         await _service.DeleteSupplier(supplierSearched);
         return Unit.Value;
     }

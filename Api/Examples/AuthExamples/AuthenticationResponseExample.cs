@@ -1,4 +1,5 @@
 using Application.UseCases.Auth.Dto;
+using Domain.Exceptions;
 using MediatR;
 using MongoDB.Bson;
 using Swashbuckle.AspNetCore.Filters;
@@ -17,4 +18,5 @@ public class AuthenticationResponseExample: IMultipleExamplesProvider<Authentica
         
         yield return SwaggerExample.Create("crearAlarmaRequest",authDto);
     }
+   
 }

@@ -18,7 +18,7 @@ public class GetSupplierByIdQueryHandler : IRequestHandler<GetSupplierByIdQuery,
     public async Task<SupplierDto> Handle(GetSupplierByIdQuery request, CancellationToken cancellationToken)
     {
         var supplierSearched = await _service.GetSupplierById(request.Id);
-        _ = supplierSearched ?? throw new EntityException("Entidad no encontrada");
+        _ = supplierSearched ?? throw new EntityNotFundException();
         return _mapper.Map<SupplierDto>(supplierSearched);
     }
 }

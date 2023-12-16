@@ -1,10 +1,12 @@
+using System.Net;
 using System.Runtime.Serialization;
+using Microsoft.AspNetCore.Http;
 
 namespace Domain.Exceptions;
 
 public class IncorrectCredentialsException : CoreBusinessException
 {
-    public IncorrectCredentialsException()
+    public IncorrectCredentialsException() : base(Messages.IncorrectCredentialsException)
     {
     }
 
@@ -18,5 +20,10 @@ public class IncorrectCredentialsException : CoreBusinessException
 
     protected IncorrectCredentialsException(SerializationInfo info, StreamingContext content) : base(info, content)
     {
+    }
+
+    public async override Task HandleError(HttpContext context)
+    {
+        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
     }
 }
