@@ -64,7 +64,7 @@ public static class OpenApiExtensions
 
     public static IApplicationBuilder UseOpenApi(this IApplicationBuilder app, IWebHostEnvironment env)
     {
-        if (!env.IsDevelopment()) return app;
+        // if (!env.IsDevelopment()) return app;
         app.UseSwagger();
         app.UseSwaggerUI(
             c => c.SwaggerEndpoint("/swagger/v1.0.0/swagger.json", "Supplier API v1"));

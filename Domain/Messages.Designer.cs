@@ -87,6 +87,15 @@ namespace Domain {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Usted no esta autorizado.
+        /// </summary>
+        public static string NotAuthorizedException {
+            get {
+                return ResourceManager.GetString("NotAuthorizedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Se han producido uno o mas errores de validacion.
         /// </summary>
         public static string ValidationException {

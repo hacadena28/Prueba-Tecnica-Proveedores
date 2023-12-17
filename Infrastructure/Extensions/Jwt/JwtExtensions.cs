@@ -51,18 +51,11 @@ public static class JwtExtensions
                     context.Response.ContentType = "application/json";
                     var result = JsonConvert.SerializeObject("Usted no esta autorizado");
                     return context.Response.WriteAsync(result);
-                },
-                OnForbidden = context =>
-                {
-                    context.Response.StatusCode = 400;
-                    context.Response.ContentType = "application/json";
-                    var result = JsonConvert.SerializeObject("Usted no tiene permiso sobre este recurso");
-                    return context.Response.WriteAsync(result);
                 }
             };
         });
 
-        svc.AddScoped<IJwtServices,JwtService>();
+        svc.AddScoped<IJwtServices, JwtService>();
 
 
         return svc;
