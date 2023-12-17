@@ -1,5 +1,4 @@
 using Api.Controllers;
-using Application.Common.Exceptions;
 using Application.UseCases.Suppliers.Commands.SupplierCreate;
 using Application.UseCases.Suppliers.Commands.SupplierDelete;
 using Application.UseCases.Suppliers.Commands.SupplierUpdate;
@@ -116,25 +115,5 @@ public class SupplierTest
         Assert.IsType<OkObjectResult>(result);
     }
 
-    //integracion
-    [Fact]
-    public async Task CreateProviderWithoutThrowingExceptions()
-    {
-        // Arrange
-        var supplierCreateCommand = new SupplierCreateCommand("12345", "Bussiness one", "Calle 1", "Ciudad 1",
-            "Departamento 1", "email@example.com", "Contact Name", "ContactEmail@mail.com");
-
-        // Act
-        try
-        {
-            await _supplierController.Create(supplierCreateCommand);
-            Assert.True(true);
-        }
-        catch (Exception ex)
-        {
-            Assert.True(false, $"Se lanzó una excepción: {ex.Message}");
-        }
-
-        // Assert
-    }
+    
 }

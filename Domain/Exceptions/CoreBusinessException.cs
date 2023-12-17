@@ -1,6 +1,6 @@
+using Microsoft.AspNetCore.Http;
 using System.Net;
 using System.Runtime.Serialization;
-using Microsoft.AspNetCore.Http;
 
 namespace Domain.Exceptions;
 

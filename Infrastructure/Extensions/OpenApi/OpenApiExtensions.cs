@@ -56,8 +56,7 @@ public static class OpenApiExtensions
                     new string[] { }
                 }
             });
-            var xmlFilename = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
-            c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
+            c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "Api.xml"));
             c.ExampleFilters();
         });
         return services;
