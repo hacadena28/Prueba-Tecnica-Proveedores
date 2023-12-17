@@ -1,6 +1,5 @@
 using System.Net;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Xunit.Abstractions;
 
 namespace Api.Test;
 
@@ -8,7 +7,7 @@ public class AuthIntegrationTest : IClassFixture<WebApplicationFactory<Program>>
 {
     private readonly HttpClient _client;
     private readonly WebApplicationFactory<Program> _factory;
-    private readonly string UrlApi = "/api/supplier";
+    private readonly string _urlApi = "/api/supplier";
 
     public AuthIntegrationTest(WebApplicationFactory<Program> factory)
     {
@@ -22,7 +21,7 @@ public class AuthIntegrationTest : IClassFixture<WebApplicationFactory<Program>>
         // Arrange
 
         // Act
-        var response = await _client.GetAsync(UrlApi);
+        var response = await _client.GetAsync(_urlApi);
 
         // Assert
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);
