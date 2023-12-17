@@ -54,6 +54,9 @@ public class Supplier : EntityBase<string>
 
     public void ChangeState(bool newState)
     {
-        if (newState != Active) Active = newState;
+        if (newState != Active)
+        {
+            Active = newState;
+        }
     }
 }

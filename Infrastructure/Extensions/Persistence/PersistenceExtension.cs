@@ -13,8 +13,8 @@ public static class PersistenceExtension
         services.AddSingleton<IMongoDatabase>((sp) =>
         {
             
-            var client = new MongoClient("mongodb://localhost:27017");
-            return client.GetDatabase("Supplier");
+            var client = new MongoClient(config.GetConnectionString("database"));
+            return client.GetDatabase(config.GetConnectionString("databaseName"));
             
         });
 

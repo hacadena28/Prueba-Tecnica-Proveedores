@@ -56,6 +56,7 @@ public class SupplierService
 
     public async Task DeleteSupplier(Supplier supplier)
     {
+        supplier.ChangeState(false);
         await _supplierRepository.Delete(supplier);
     }
 
