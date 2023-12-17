@@ -1,8 +1,5 @@
 using System.Net;
-using System.Text;
-using Application.UseCases.Suppliers.Commands.SupplierCreate;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Newtonsoft.Json;
 using Xunit.Abstractions;
 
 namespace Api.Test;
@@ -13,7 +10,7 @@ public class AuthIntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     private readonly WebApplicationFactory<Program> _factory;
     private readonly string UrlApi = "/api/supplier";
 
-    public AuthIntegrationTest(WebApplicationFactory<Program> factory, ITestOutputHelper output)
+    public AuthIntegrationTest(WebApplicationFactory<Program> factory)
     {
         _factory = factory;
         _client = _factory.CreateClient();
