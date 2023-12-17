@@ -1,6 +1,5 @@
 using System.Linq.Expressions;
 using Domain.Entities;
-using Domain.Exceptions;
 using Domain.Ports;
 
 namespace Domain.Services;

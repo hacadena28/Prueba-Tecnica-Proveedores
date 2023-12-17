@@ -29,10 +29,6 @@ public class Supplier : EntityBase<string>
         ContactEmail = contactEmail;
     }
 
-    public Supplier()
-    {
-    }
-
     public void Update
     (
         string? businessName,

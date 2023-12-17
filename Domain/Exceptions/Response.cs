@@ -13,7 +13,7 @@ public class Response<T>
     {
     }
 
-    public Response(T data, string message = null)
+    public Response(T data, string message = "")
     {
         Succeded = true;
         Message = message;
