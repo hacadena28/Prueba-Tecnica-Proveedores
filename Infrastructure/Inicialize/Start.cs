@@ -10,6 +10,7 @@ public class Start
     public Start(MongoContext<User> context)
     {
         _context = context;
+        var userCollection = _context.DataBase;
     }
 
     public void seeds()

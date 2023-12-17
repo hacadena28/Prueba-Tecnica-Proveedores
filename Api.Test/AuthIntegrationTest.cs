@@ -20,10 +20,10 @@ public class AuthIntegrationTest : IClassFixture<WebApplicationFactory<Program>>
     }
 
     [Fact]
-    public async Task Post_Supplier_Endpoint_Without_Authentication_Should_Return_Unauthorized()
+    public async Task Post_Supplier_Endpoint_Return_Unauthorized()
     {
         // Arrange
-       
+
         // Act
         var response = await _client.GetAsync(UrlApi);
 

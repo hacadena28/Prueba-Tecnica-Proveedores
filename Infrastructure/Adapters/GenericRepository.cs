@@ -10,6 +10,7 @@ namespace Infrastructure.Adapters;
 public class GenericRepository<E> : IGenericRepository<E> where E : EntityBase<string>
 {
     private readonly IMongoCollection<E> _collection;
+    
 
     public GenericRepository(IMongoDatabase database)
     {
