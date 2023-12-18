@@ -1,24 +1,29 @@
 using Domain.Entities;
 using Infrastructure.Context;
+using Microsoft.Extensions.Configuration;
+using MongoDB.Driver;
 
 namespace Infrastructure.Inicialize;
 
 public class Start
 {
-    private readonly MongoContext<User> _context;
+    private readonly IMongoDatabase _database;
+    private readonly IMongoCollection<User> _collection;
 
-    public Start(MongoContext<User> context)
+    public Start(IConfiguration config)
     {
-        _context = context;
-        var userCollection = _context.DataBase;
+        var client = new MongoClient(config.GetConnectionString("database"));
+        _database = client.GetDatabase(config.GetConnectionString("databaseName"));
+        _collection = _database.GetCollection<User>("User");
     }
 
     public void seeds()
     {
-        var userCollection = _context.DataBase;
+        if (!_collection.AsQueryable().Any())
+        {
+            var user = new User("admin", "12345678");
 
-        var user = new User("admin", "12345678");
-
-        userCollection.InsertOne(user);
+            _collection.InsertOne(user);
+        }
     }
 }

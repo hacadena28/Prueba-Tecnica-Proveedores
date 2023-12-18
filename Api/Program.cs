@@ -26,8 +26,7 @@ builder.Services.AddEndpointsApiExplorer();
 
 var app = builder.Build();
 app.UseInfrastructure(app.Environment);
-var dbContext = new MongoContext<User>(config);
-var start = new Start(dbContext);
+var start = new Start(config);
 start.seeds();
 
 // Configure the HTTP request pipeline.
@@ -43,11 +42,9 @@ app.MapControllers();
 app.Run();
 
 
-
 public partial class Program
 {
     public static void Main(string[] args)
     {
-        
     }
 }
